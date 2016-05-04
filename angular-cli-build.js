@@ -13,9 +13,7 @@ module.exports = function(defaults) {
       'rxjs/**/*.js',
       '@angular/**/*.js',
       'materialize-css/bin/materialize.css',
-      'materialize-css/font/roboto/Roboto-Regular.woff2',
-      'materialize-css/font/roboto/Roboto-Regular.woff',
-      'materialize-css/font/roboto/Roboto-Regular.ttf'
+      'materialize-css/fonts/roboto/*',
     ]
   });
 };

@@ -22,6 +22,7 @@ const barrels: string[] = [
   '@angular/router',
   '@angular/platform-browser',
   '@angular/platform-browser-dynamic',
+  '@angular/router-deprecated',
 
   // Thirdparty barrels.
   'rxjs',
@@ -29,6 +30,13 @@ const barrels: string[] = [
   // App specific barrels.
   'app',
   'app/shared',
+  'app/contacts',
+  'app/models',
+  'app/data',
+  'app/contacts/contacts-list',
+  'app/contacts/contact-details',
+  'app/contacts/contact-editor',
+  'app/contacts/contacts-header',
   /** @cli-barrel */
 ];
 

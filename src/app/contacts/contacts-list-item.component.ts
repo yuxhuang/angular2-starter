@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation, Attribute, Input} from '@angular/core';
-import {ROUTER_DIRECTIVES, OnActivate, RouteSegment, RouteTree} from "@angular/router";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 
 import {Contact} from "../models";
 
@@ -8,15 +8,13 @@ import {Contact} from "../models";
   selector: 'contacts-list-item',
   template: `
     <img [src]="item.image" alt="" class="circle">
-    <a [routerLink]="['/contacts/show', item.id]" class="title">{{ item.name }}</a>
+    <a [routerLink]="detailItemSegments" class="title">{{ item.name }}</a>
 `,
   directives: [ROUTER_DIRECTIVES],
   encapsulation: ViewEncapsulation.Emulated,
   providers: []
 })
-export class ContactsListItemComponent implements OnActivate {
+export class ContactsListItemComponent {
   @Input() item: Contact;
-
-  routerOnActivate(curr:RouteSegment, prev?:RouteSegment, currTree?:RouteTree, prevTree?:RouteTree):void {
-  }
+  @Input() detailItemSegments: Array<string>;
 }

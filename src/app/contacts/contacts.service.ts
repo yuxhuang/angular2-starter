@@ -4,10 +4,9 @@ import {Injectable, Inject} from '@angular/core';
 import {Http, Response, Headers} from "@angular/http";
 
 import {Contact} from "../models";
-import {IContactsService} from '../contacts';
 
 @Injectable()
-export class ContactsService implements IContactsService {
+export class ContactsService {
   constructor(@Inject('API_ENDPOINT') private apiRoot: string, private _http: Http) {}
 
   getContacts(): Observable<Array<Contact>> {

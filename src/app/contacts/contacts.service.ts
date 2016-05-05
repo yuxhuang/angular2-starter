@@ -5,48 +5,33 @@ import {Http, Response, Headers} from "@angular/http";
 
 import {Contact} from "../models";
 import {IContactsService} from '../contacts';
-import { CONTACT_DATA } from '../data';
 
 @Injectable()
 export class ContactsService implements IContactsService {
   constructor(@Inject('API_ENDPOINT') private apiRoot: string, private _http: Http) {}
 
   getContacts(): Observable<Array<Contact>> {
-    // return this._http
-    //   .get(this.apiRoot + '/contacts')
-    //   .map(this.extractData)
-    //   .map(x => x.items)
-    //   .catch(this.handleError);
-    return Observable.create(observer => {
-      observer.next(CONTACT_DATA);
-      observer.complete();
-    });
+    return this._http
+      .get(this.apiRoot + '/contacts')
+      .map(this.extractData)
+      .map(x => x.items)
+      .catch(this.handleError);
   }
 
   getContact(id: number): Observable<Contact> {
-    // return this._http
-    //   .get(this.apiRoot + `/contacts/${id}`)
-    //   .map(this.extractData)
-    //   .map(x => x.item)
-    //   .catch(this.handleError);
-
-    return Observable.create(observer => {
-      observer.next(CONTACT_DATA[id]);
-      observer.complete();
-    });
+    return this._http
+      .get(this.apiRoot + `/contacts/${id}`)
+      .map(this.extractData)
+      .map(x => x.item)
+      .catch(this.handleError);
   }
 
   updateContact(contact: Contact) {
-    // let headers = new Headers({'Content-Type': 'application/json;charset=UTF-8'});
-    // return this._http
-    //   .put(this.apiRoot + `/contacts/${contact.id}`, JSON.stringify({item: contact}), headers)
-    //   .map(this.extractData)
-    //   .catch(this.handleError);
-    return Observable.create(observer => {
-      CONTACT_DATA[contact.id] = contact;
-      observer.next();
-      observer.complete();
-    });
+    let headers = new Headers({'Content-Type': 'application/json;charset=UTF-8'});
+    return this._http
+      .put(this.apiRoot + `/contacts/${contact.id}`, JSON.stringify({item: contact}), headers)
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   private extractData(res: Response) {

@@ -29,7 +29,7 @@ export class ContactsService implements IContactsService {
   updateContact(contact: Contact) {
     let headers = new Headers({'Content-Type': 'application/json;charset=UTF-8'});
     return this._http
-      .put(this.apiRoot + `/contacts/${contact.id}`, JSON.stringify({item: contact}), headers)
+      .put(this.apiRoot + `/contacts/${contact.id}`, JSON.stringify(contact), headers)
       .map(this.extractData)
       .catch(this.handleError);
   }

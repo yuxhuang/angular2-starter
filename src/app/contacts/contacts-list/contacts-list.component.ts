@@ -1,6 +1,6 @@
 import {Observable} from "rxjs/Observable";
 
-import {Component, OnInit, ViewEncapsulation, Inject} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 
 import {Contact} from "../../models";

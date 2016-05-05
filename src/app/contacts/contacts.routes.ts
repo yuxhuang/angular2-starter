@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {ROUTER_DIRECTIVES, Routes} from "@angular/router";
+import {ROUTER_DIRECTIVES, Routes, Router} from "@angular/router";
 
 import {ContactDetailsComponent} from "./contact-details/contact-details.component";
 import {ContactEditorComponent} from "./contact-editor/contact-editor.component";
@@ -21,4 +21,7 @@ import {ContactHeaderComponent} from "./contacts-header/contacts-header.componen
   {path: '/show/:id', component: ContactDetailsComponent},
   {path: '/edit/:id', component: ContactEditorComponent}
 ])
-export class ContactsRoutes {}
+export class ContactsRoutes {
+  constructor(private _router: Router) {
+  }
+}

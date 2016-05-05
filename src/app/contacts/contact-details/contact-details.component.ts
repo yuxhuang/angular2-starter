@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {ROUTER_DIRECTIVES, OnActivate, RouteSegment, RouteTree} from '@angular/router';
+import {ROUTER_DIRECTIVES, OnActivate, RouteSegment, RouteTree, UrlSegment} from '@angular/router';
 
 import {Contact} from "../../models";
 import {ContactsService} from "../contacts.service";
@@ -54,8 +54,8 @@ import {ContactsService} from "../contacts.service";
         </fieldset>
       </div>
       <div class="card-action">
-        <a class="btn" [routerLink]="['/contacts']">Go Back</a>
-        <a class="btn" [routerLink]="['/contacts/edit', contact?.id]">Edit</a>
+        <a class="btn" [routerLink]="baseSegments">Go Back</a>
+        <a class="btn" [routerLink]="editSegments.concat([contact?.id])">Edit</a>
       </div>
     </div>
   </div>
@@ -66,12 +66,17 @@ import {ContactsService} from "../contacts.service";
 export class ContactDetailsComponent implements OnActivate {
 
   private contact: Contact;
+  private baseSegments: Array<string>;
+  private editSegments: Array<string>;
 
   constructor(private _contactsService: ContactsService) {}
 
   routerOnActivate(curr:RouteSegment, prev?:RouteSegment, currTree?:RouteTree, prevTree?:RouteTree):void {
     let id = Number(curr.getParam('id'));
     this._contactsService.getContact(id).subscribe(contact => this.contact = contact);
+    this.baseSegments = currTree.parent(curr).urlSegments.map((x: UrlSegment) => x.segment);
+    this.baseSegments.unshift('/');
+    this.editSegments = this.baseSegments.concat(['edit']);
   }
 
 }

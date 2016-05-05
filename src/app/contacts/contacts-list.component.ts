@@ -1,10 +1,11 @@
 import {Observable} from "rxjs/Observable";
 
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {ROUTER_DIRECTIVES, Routes} from "@angular/router";
+import {Component, ViewEncapsulation} from '@angular/core';
+import {ROUTER_DIRECTIVES, OnActivate, RouteSegment, RouteTree} from "@angular/router";
 
 import {Contact} from "../models";
 import {ContactsService} from "./contacts.service";
+import {ContactsListItemComponent} from "./contacts-list-item.component";
 
 @Component({
   moduleId: module.id,
@@ -12,21 +13,20 @@ import {ContactsService} from "./contacts.service";
   template: `
 <ul class="collection">
   <li class="collection-item avatar" *ngFor="let item of contacts | async">
-    <img [src]="item.image" alt="" class="circle">
-    <a [routerLink]="['/contacts/show', item.id]" class="title">{{ item.name }}</a>
+    <contacts-list-item [item]="item"></contacts-list-item> 
   </li>
 </ul>
 `,
-  directives: [ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES, ContactsListItemComponent],
   encapsulation: ViewEncapsulation.Emulated,
   providers: [ContactsService]
 })
-export class ContactsListComponent implements OnInit {
+export class ContactsListComponent implements OnActivate {
   private contacts: Observable<Array<Contact>>;
 
   constructor(private _contactsService: ContactsService) {}
 
-  ngOnInit() {
+  routerOnActivate(curr:RouteSegment, prev?:RouteSegment, currTree?:RouteTree, prevTree?:RouteTree):void {
     this.contacts = this._contactsService.getContacts();
   }
 }

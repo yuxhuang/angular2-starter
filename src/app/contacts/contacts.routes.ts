@@ -1,10 +1,10 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {ROUTER_DIRECTIVES, Routes, Router} from "@angular/router";
 
-import {ContactDetailsComponent} from "./contact-details/contact-details.component";
-import {ContactEditorComponent} from "./contact-editor/contact-editor.component";
-import {ContactsListComponent} from "./contacts-list/contacts-list.component";
-import {ContactHeaderComponent} from "./contacts-header/contacts-header.component";
+import {ContactDetailsComponent} from "./contact-details.component";
+import {ContactEditorComponent} from "./contact-editor.component";
+import {ContactsListComponent} from "./contacts-list.component";
+import {ContactHeaderComponent} from "./contacts-header.component";
 
 @Component({
   moduleId: module.id,

@@ -2,10 +2,10 @@ import {Component} from '@angular/core';
 
 import {Router, OnActivate, RouteSegment, RouteTree, ROUTER_DIRECTIVES, UrlSegment} from '@angular/router';
 
-import {Contact} from "../../models";
+import {Contact} from "../models";
 
 import {Observable} from "rxjs/Observable";
-import {ContactsService} from "../contacts.service";
+import {ContactsService} from "./contacts.service";
 
 @Component({
   moduleId: module.id,

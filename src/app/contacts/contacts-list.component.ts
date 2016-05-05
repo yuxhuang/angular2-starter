@@ -3,8 +3,8 @@ import {Observable} from "rxjs/Observable";
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ROUTER_DIRECTIVES, Routes} from "@angular/router";
 
-import {Contact} from "../../models";
-import {ContactsService} from "../contacts.service";
+import {Contact} from "../models";
+import {ContactsService} from "./contacts.service";
 
 @Component({
   moduleId: module.id,

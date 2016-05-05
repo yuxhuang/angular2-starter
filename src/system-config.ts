@@ -36,10 +36,6 @@ const barrels: string[] = [
   /** @cli-barrel */
   'app/models',
   'app/data',
-  'app/contacts/contacts-list',
-  'app/contacts/contact-details',
-  'app/contacts/contact-editor',
-  'app/contacts/contacts-header',
 ];
 
 const cliSystemConfigPackages: any = {};

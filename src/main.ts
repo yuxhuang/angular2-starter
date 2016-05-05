@@ -20,4 +20,3 @@ if (environment.production) {
 else {
   bootstrap(Angular2StarterAppComponent, deps);
 }
-

@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 
 import {ROUTER_DIRECTIVES, OnActivate, RouteSegment, RouteTree, UrlSegment} from '@angular/router';
 
-import {Contact} from "../../models";
-import {ContactsService} from "../contacts.service";
+import {Contact} from "../models";
+import {ContactsService} from "./contacts.service";
 
 @Component({
   moduleId: module.id,

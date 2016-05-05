@@ -22,7 +22,6 @@ const barrels: string[] = [
   '@angular/router',
   '@angular/platform-browser',
   '@angular/platform-browser-dynamic',
-  '@angular/router-deprecated',
 
   '@ngrx/store',
 

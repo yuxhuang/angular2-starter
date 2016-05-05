@@ -1,24 +1,19 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES, RouteConfig } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES, Router, Routes } from '@angular/router';
 
-import {ContactsListComponent} from "./contacts/contacts-list";
-import {ContactDetailsComponent} from "./contacts/contact-details";
-import {ContactEditorComponent} from "./contacts/contact-editor";
-import {ContactHeaderComponent} from "./contacts/contacts-header";
+import {ContactsRoutes} from "./contacts/contacts.routes";
 
 @Component({
   moduleId: module.id,
   selector: 'angular2-starter-app',
   template: `<contact-header></contact-header>
-<router-outlet></router-outlet>
-`,
-  directives: [ROUTER_DIRECTIVES, ContactHeaderComponent]
+    <router-outlet></router-outlet>`,
+  directives: [ROUTER_DIRECTIVES]
 })
-@RouteConfig([
-  {path: '/', name: 'ContactsList', component: ContactsListComponent},
-  {path: '/contacts/:id', name: 'ContactDetail', component: ContactDetailsComponent},
-  {path: '/contacts/:id/editor', name: 'ContactEditor', component: ContactEditorComponent}
+@Routes([
+  {path: '/contacts', component: ContactsRoutes},
 ])
 export class Angular2StarterAppComponent {
   title = 'angular2-starter works!';
+  constructor(private _router: Router) {}
 }

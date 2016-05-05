@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
-import {Router, RouteParams} from '@angular/router-deprecated';
+import {Router, OnActivate, RouteSegment, RouteTree, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {Contact} from "../../models";
 
@@ -11,6 +11,7 @@ import {ContactsService} from "../contacts.service";
   moduleId: module.id,
   selector: 'contact-editor',
   providers: [ContactsService],
+  directives: [ROUTER_DIRECTIVES],
   template: `<div class="row">
   <form class="col s12 m7">
     <div class="card">
@@ -88,27 +89,26 @@ import {ContactsService} from "../contacts.service";
 </div>
 `
 })
-export class ContactEditorComponent implements OnInit {
-
+export class ContactEditorComponent implements OnActivate {
   private contact: Contact = <Contact>{address:{}};
   private contactObservable: Observable<Contact>;
 
-  constructor(private _contactsService: ContactsService, private _routeParams: RouteParams, private _router: Router) {}
+  constructor(private _contactsService: ContactsService, private _router: Router) {}
 
-  ngOnInit() {
-    let id = Number(this._routeParams.get('id'));
+  routerOnActivate(curr:RouteSegment, prev?:RouteSegment, currTree?:RouteTree, prevTree?:RouteTree):void {
+    let id = Number(curr.getParam('id'));
     this.contactObservable = this._contactsService.getContact(id);
     this.contactObservable.subscribe(x => this.contact = x);
   }
 
   private save(contact: Contact) {
     this._contactsService.updateContact(contact).subscribe(x => {
-      this._router.navigate(['ContactDetail', {id: this.contact.id}]);
+      this._router.navigate(['/contacts/show', contact.id]);
     });
   }
 
   private cancel(contact: Contact) {
-    this._router.navigate(['ContactDetail', {id: this.contact.id}]);
+    this._router.navigate(['/contacts/show', contact.id]);
   }
 
 }

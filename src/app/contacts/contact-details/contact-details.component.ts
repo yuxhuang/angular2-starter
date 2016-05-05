@@ -1,6 +1,6 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component} from '@angular/core';
 
-import {RouteParams, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {ROUTER_DIRECTIVES, OnActivate, RouteSegment, RouteTree} from '@angular/router';
 
 import {Contact} from "../../models";
 import {ContactsService} from "../contacts.service";
@@ -54,8 +54,8 @@ import {ContactsService} from "../contacts.service";
         </fieldset>
       </div>
       <div class="card-action">
-        <a class="btn" [routerLink]="['ContactsList']">Go Back</a>
-        <a class="btn" [routerLink]="['ContactEditor', {id: contact?.id}]">Edit</a>
+        <a class="btn" [routerLink]="['/contacts']">Go Back</a>
+        <a class="btn" [routerLink]="['/contacts/edit', contact?.id]">Edit</a>
       </div>
     </div>
   </div>
@@ -63,14 +63,14 @@ import {ContactsService} from "../contacts.service";
 `,
   directives: [ROUTER_DIRECTIVES],
 })
-export class ContactDetailsComponent implements OnInit {
+export class ContactDetailsComponent implements OnActivate {
 
   private contact: Contact;
 
-  constructor(private _contactsService: ContactsService, private _routeParams: RouteParams) {}
+  constructor(private _contactsService: ContactsService) {}
 
-  ngOnInit() {
-    let id = Number(this._routeParams.get('id'));
+  routerOnActivate(curr:RouteSegment, prev?:RouteSegment, currTree?:RouteTree, prevTree?:RouteTree):void {
+    let id = Number(curr.getParam('id'));
     this._contactsService.getContact(id).subscribe(contact => this.contact = contact);
   }
 

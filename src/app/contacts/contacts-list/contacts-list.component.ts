@@ -9,8 +9,13 @@ import {Contact} from "../../models";
 @Component({
   moduleId: module.id,
   selector: 'contacts-list',
-  templateUrl: 'contacts-list.component.html',
-  styleUrls: ['contacts-list.component.css'],
+  template: `<ul class="collection">
+  <li class="collection-item avatar" *ngFor="let item of contacts | async">
+    <img [src]="item.image" alt="" class="circle">
+    <a [routerLink]="['ContactDetail', {id: item.id}]" class="title">{{ item.name }}</a>
+  </li>
+</ul>
+`,
   directives: [ROUTER_DIRECTIVES],
   encapsulation: ViewEncapsulation.Emulated,
 })

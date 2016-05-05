@@ -9,8 +9,9 @@ import {ContactHeaderComponent} from "./contacts/contacts-header";
 @Component({
   moduleId: module.id,
   selector: 'angular2-starter-app',
-  templateUrl: 'angular2-starter.component.html',
-  styleUrls: ['angular2-starter.component.css'],
+  template: `<contact-header></contact-header>
+<router-outlet></router-outlet>
+`,
   directives: [ROUTER_DIRECTIVES, ContactHeaderComponent]
 })
 @RouteConfig([

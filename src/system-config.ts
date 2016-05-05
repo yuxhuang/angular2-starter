@@ -24,6 +24,8 @@ const barrels: string[] = [
   '@angular/platform-browser-dynamic',
   '@angular/router-deprecated',
 
+  '@ngrx/store',
+
   // Thirdparty barrels.
   'rxjs',
 
@@ -53,6 +55,8 @@ declare var System: any;
 System.config({
   map: {
     '@angular': 'vendor/@angular',
+    '@angular2-material': 'vendor/@angular2-material',
+    '@ngrx': 'vendor/@ngrx',
     'rxjs': 'vendor/rxjs',
     'main': 'main.js'
   },

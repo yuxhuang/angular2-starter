@@ -44,7 +44,7 @@ function ngApp(req, res) {
       provide(BASE_URL, {useValue: baseUrl}),
     ],
     providers: [
-      provide(REQUEST_URL, {useValue: url}),
+      provide('API_ENDPOINT', {useValue: 'http://localhost:4200/api'}),
       NODE_ROUTER_PROVIDERS,
       NODE_HTTP_PROVIDERS,
     ],

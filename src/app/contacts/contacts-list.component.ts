@@ -1,7 +1,7 @@
 import {Observable} from "rxjs/Observable";
 
 import {Component, ViewEncapsulation, Pipe, PipeTransform} from '@angular/core';
-import {ROUTER_DIRECTIVES, OnActivate, RouteSegment, RouteTree, UrlSegment} from "@angular/router";
+import {ROUTER_DIRECTIVES, OnActivate, ComponentInstruction} from "@angular/router-deprecated";
 
 import {Contact} from "../models";
 import {ContactsService} from "./contacts.service";
@@ -17,7 +17,6 @@ class ContactsByKeywordPipe implements PipeTransform {
     }) : [];
   }
 }
-
 @Component({
   moduleId: module.id,
   selector: 'contacts-list',
@@ -25,7 +24,7 @@ class ContactsByKeywordPipe implements PipeTransform {
 <contacts-keyword-search (keywordChanged)="keyword = $event"></contacts-keyword-search>
 <ul class="collection">
   <li class="collection-item avatar" *ngFor="let item of contacts | async | contactsByKeyword: keyword">
-    <contacts-list-item [item]="item" [detailItemSegments]="showSegments.concat([item.id])"></contacts-list-item> 
+    <contacts-list-item [item]="item"></contacts-list-item> 
   </li>
 </ul>
 `,
@@ -35,16 +34,14 @@ class ContactsByKeywordPipe implements PipeTransform {
   providers: [ContactsService]
 })
 export class ContactsListComponent implements OnActivate {
+
   private contacts: Observable<Array<Contact>>;
-  private showSegments: Array<string>;
   private keyword: string = '';
 
   constructor(private _contactsService: ContactsService) {}
 
-  routerOnActivate(curr:RouteSegment, prev?:RouteSegment, currTree?:RouteTree, prevTree?:RouteTree):void {
-    this.showSegments = currTree.parent(curr).urlSegments.map((x: UrlSegment) => x.segment);
-    this.showSegments.unshift('/');
-    this.showSegments.push('show');
+  routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction) {
     this.contacts = this._contactsService.getContacts();
+    return true;
   }
 }

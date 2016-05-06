@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation, Attribute, Input} from '@angular/core';
-import {ROUTER_DIRECTIVES} from "@angular/router";
+import {Component, ViewEncapsulation, Input} from '@angular/core';
+import {ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 
 import {Contact} from "../models";
 
@@ -8,7 +8,7 @@ import {Contact} from "../models";
   selector: 'contacts-list-item',
   template: `
     <img [src]="item.image" alt="" class="circle">
-    <a [routerLink]="detailItemSegments" class="title">{{ item.name }}</a>
+    <a [routerLink]="['Details', {id: item.id}]" class="title">{{ item.name }}</a>
 `,
   directives: [ROUTER_DIRECTIVES],
   encapsulation: ViewEncapsulation.Emulated,
@@ -16,5 +16,4 @@ import {Contact} from "../models";
 })
 export class ContactsListItemComponent {
   @Input() item: Contact;
-  @Input() detailItemSegments: Array<string>;
 }

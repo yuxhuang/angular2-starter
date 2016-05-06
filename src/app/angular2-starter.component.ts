@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router, Routes } from '@angular/router';
+import { ROUTER_DIRECTIVES, Router, RouteConfig } from '@angular/router-deprecated';
 
 import {ContactsRoutes} from "./contacts/contacts.routes";
 
@@ -10,8 +10,8 @@ import {ContactsRoutes} from "./contacts/contacts.routes";
     <router-outlet></router-outlet>`,
   directives: [ROUTER_DIRECTIVES]
 })
-@Routes([
-  {path: '/contacts', component: ContactsRoutes},
+@RouteConfig([
+  {path: '/contacts', name: 'ContactRoutes', component: ContactsRoutes},
 ])
 export class Angular2StarterAppComponent {
   title = 'angular2-starter works!';

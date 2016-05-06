@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {ROUTER_DIRECTIVES, Routes, Router} from "@angular/router";
+import { ROUTER_DIRECTIVES, Router, RouteConfig } from '@angular/router-deprecated';
 
 import {ContactDetailsComponent} from "./contact-details.component";
 import {ContactEditorComponent} from "./contact-editor.component";
@@ -16,10 +16,10 @@ import {ContactHeaderComponent} from "./contacts-header.component";
   directives: [ROUTER_DIRECTIVES, ContactHeaderComponent],
   encapsulation: ViewEncapsulation.Emulated,
 })
-@Routes([
-  {path: '/', component: ContactsListComponent},
-  {path: '/show/:id', component: ContactDetailsComponent},
-  {path: '/edit/:id', component: ContactEditorComponent}
+@RouteConfig([
+  {path: '/...', name: 'List', component: ContactsListComponent},
+  {path: '/show/:id', name: 'Details', component: ContactDetailsComponent},
+  {path: '/edit/:id', name: 'Editor', component: ContactEditorComponent}
 ])
 export class ContactsRoutes {
   constructor(private _router: Router) {

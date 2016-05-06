@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {Router, OnActivate, RouteSegment, RouteTree, ROUTER_DIRECTIVES, UrlSegment} from '@angular/router';
+import {Router, OnActivate, ComponentInstruction, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
 import {Contact} from "../models";
 
@@ -92,27 +92,24 @@ import {ContactsService} from "./contacts.service";
 export class ContactEditorComponent implements OnActivate {
   private contact: Contact = <Contact>{address:{}};
   private contactObservable: Observable<Contact>;
-  private baseSegments: Array<UrlSegment>;
 
   constructor(private _contactsService: ContactsService, private _router: Router) {}
 
-  routerOnActivate(curr:RouteSegment, prev?:RouteSegment, currTree?:RouteTree, prevTree?:RouteTree):void {
-    let id = Number(curr.getParam('id'));
+  routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any|Promise<any> {
+    let id = Number(nextInstruction.params['id']);
     this.contactObservable = this._contactsService.getContact(id);
     this.contactObservable.subscribe(x => this.contact = x);
-    this.baseSegments = currTree.parent(curr).urlSegments;
+    return true;
   }
 
   private save(contact: Contact) {
-    let segments = this.baseSegments.map((x: UrlSegment) => x.segment).concat(['show', contact.id]);
     this._contactsService.updateContact(contact).subscribe(x => {
-      this._router.navigate(segments);
+      this._router.navigate(['Details', {id: contact.id}]);
     });
   }
 
   private cancel(contact: Contact) {
-    let segments = this.baseSegments.map((x: UrlSegment) => x.segment).concat(['show', contact.id]);
-    this._router.navigate(segments);
+    this._router.navigate(['Details', {id: contact.id}]);
   }
 
 }

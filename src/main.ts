@@ -3,7 +3,7 @@ import 'rxjs/Rx';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { provide, enableProdMode } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
-import { ROUTER_PROVIDERS } from '@angular/router';
+import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
 import { Angular2StarterAppComponent, environment } from './app';
 

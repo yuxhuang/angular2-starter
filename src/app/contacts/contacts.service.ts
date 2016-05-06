@@ -1,9 +1,11 @@
 import {Observable} from "rxjs/Observable";
 
-import {Injectable, Inject} from '@angular/core';
+import {Injectable, Inject, OpaqueToken} from '@angular/core';
 import {Http, Response, Headers} from "@angular/http";
 
 import {Contact} from "../models";
+
+export const API_ENDPOINT: OpaqueToken;
 
 @Injectable()
 export abstract class ContactsService {
@@ -13,7 +15,7 @@ export abstract class ContactsService {
 }
 
 export class RemoteContactsService extends ContactsService {
-  constructor(@Inject('API_ENDPOINT') private apiRoot: string, private _http: Http) {
+  constructor(@Inject(API_ENDPOINT) private apiRoot: string, private _http: Http) {
     super();
   }
 

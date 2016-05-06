@@ -6,7 +6,7 @@ import {ContactsRoutes} from "./contacts/contacts.routes";
 @Component({
   moduleId: module.id,
   selector: 'angular2-starter-app',
-  template: `<contact-header></contact-header>
+  template: `
     <router-outlet></router-outlet>`,
   directives: [ROUTER_DIRECTIVES]
 })

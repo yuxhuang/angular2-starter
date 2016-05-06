@@ -8,7 +8,7 @@ import {ContactsService} from "./contacts.service";
 @Component({
   moduleId: module.id,
   selector: 'contact-detail',
-  providers: [ContactsService],
+  providers: [],
   template: `<div class="row">
   <div class="col s12 m7">
     <div class="card">

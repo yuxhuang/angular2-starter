@@ -32,7 +32,7 @@ class ContactsByKeywordPipe implements PipeTransform {
   directives: [ROUTER_DIRECTIVES, ContactsListItemComponent, ContactsKeywordSearchComponent],
   pipes: [ContactsByKeywordPipe],
   encapsulation: ViewEncapsulation.Emulated,
-  providers: [ContactsService]
+  providers: []
 })
 export class ContactsListComponent implements OnActivate {
   private contacts: Observable<Array<Contact>>;

@@ -6,8 +6,16 @@ import {Http, Response, Headers} from "@angular/http";
 import {Contact} from "../models";
 
 @Injectable()
-export class ContactsService {
-  constructor(@Inject('API_ENDPOINT') private apiRoot: string, private _http: Http) {}
+export abstract class ContactsService {
+  abstract getContacts(): Observable<Array<Contact>>;
+  abstract getContact(id: number): Observable<Contact>;
+  abstract  updateContact(contact: Contact): Observable<Contact>;
+}
+
+export class RemoteContactsService extends ContactsService {
+  constructor(@Inject('API_ENDPOINT') private apiRoot: string, private _http: Http) {
+    super();
+  }
 
   getContacts(): Observable<Array<Contact>> {
     return this._http

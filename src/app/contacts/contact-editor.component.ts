@@ -10,7 +10,7 @@ import {ContactsService} from "./contacts.service";
 @Component({
   moduleId: module.id,
   selector: 'contact-editor',
-  providers: [ContactsService],
+  providers: [],
   directives: [ROUTER_DIRECTIVES],
   template: `<div class="row">
   <form class="col s12 m7">

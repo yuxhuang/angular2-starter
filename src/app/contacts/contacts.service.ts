@@ -5,7 +5,7 @@ import {Http, Response, Headers} from "@angular/http";
 
 import {Contact} from "../models";
 
-export const API_ENDPOINT: OpaqueToken;
+export const API_ENDPOINT = new OpaqueToken('API_ENDPOINT');
 
 @Injectable()
 export abstract class ContactsService {

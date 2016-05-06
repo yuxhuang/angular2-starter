@@ -3,6 +3,7 @@ import 'angular2-universal/polyfills';
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import * as morgan from 'morgan';
 
 // Angular 2 Universal
 import {
@@ -18,10 +19,12 @@ import {
 } from 'angular2-universal';
 
 // Application
-import {Angular2StarterAppComponent} from './app/angular2-starter.component';
+import {Angular2StarterAppComponent} from './app';
 
 const app = express();
-const ROOT = path.join(path.resolve(__dirname, '..'));
+const ROOT = path.join(path.resolve(__dirname));
+
+console.log('ROOT: ' + ROOT);
 
 enableProdMode();
 
@@ -30,8 +33,8 @@ app.engine('.html', expressEngine);
 app.set('views', __dirname);
 app.set('view engine', 'html');
 
+app.use(morgan('dev'));
 app.use(bodyParser.json());
-
 
 function ngApp(req, res) {
   let baseUrl = '/';
@@ -44,6 +47,7 @@ function ngApp(req, res) {
       provide(BASE_URL, {useValue: baseUrl}),
     ],
     providers: [
+      provide(REQUEST_URL, {useValue: url}),
       provide('API_ENDPOINT', {useValue: 'http://localhost:4200/api'}),
       NODE_ROUTER_PROVIDERS,
       NODE_HTTP_PROVIDERS,
@@ -62,17 +66,9 @@ function indexFile(req, res) {
 // Serve static files
 app.use(express.static(ROOT, {index: false}));
 
-// Our API for demos only
-app.get('/data.json', (req, res) => {
-  res.json({
-    data: 'This fake data came from the server.'
-  });
-});
-
 // Routes with html5pushstate
-app.use('/', ngApp);
-app.use('/about', ngApp);
-app.use('/home', ngApp);
+app.use('/contacts', ngApp);
+app.use('/contacts/*', ngApp);
 
 // Server
 app.listen(3000, () => {

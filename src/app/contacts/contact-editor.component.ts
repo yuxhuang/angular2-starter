@@ -104,12 +104,12 @@ export class ContactEditorComponent implements OnActivate {
 
   private save(contact: Contact) {
     this._contactsService.updateContact(contact).subscribe(x => {
-      this._router.navigate(['Details', {id: contact.id}]);
+      this._router.navigate(['../Details', {id: contact.id}]);
     });
   }
 
   private cancel(contact: Contact) {
-    this._router.navigate(['Details', {id: contact.id}]);
+    this._router.navigate(['../Details', {id: contact.id}]);
   }
 
 }

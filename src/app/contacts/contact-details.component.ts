@@ -54,8 +54,8 @@ import {ContactsService} from "./contacts.service";
         </fieldset>
       </div>
       <div class="card-action">
-        <a class="btn" [routerLink]="['List']">Go Back</a>
-        <a class="btn" [routerLink]="['Edit', {id: contact?.id}]">Edit</a>
+        <a class="btn" [routerLink]="['../List']">Go Back</a>
+        <a class="btn" [routerLink]="['../Editor', {id: contact?.id}]">Edit</a>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@
     "name": "angular2-starter"
   },
   "apps": [
-    {"main": "src/main.ts", "tsconfig": "src/tsconfig.json"}
+    {"main": "src/main.ts", "server": "src/server.ts", "tsconfig": "src/tsconfig.json"}
   ],
   "addons": [],
   "packages": [],

@@ -11,7 +11,7 @@ import {ContactsRoutes} from "./contacts/contacts.routes";
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-  {path: '/contacts', name: 'ContactRoutes', component: ContactsRoutes},
+  {path: '/contacts/...', name: 'ContactRoutes', component: ContactsRoutes},
 ])
 export class Angular2StarterAppComponent {
   title = 'angular2-starter works!';

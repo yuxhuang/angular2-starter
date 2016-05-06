@@ -15,6 +15,11 @@ var emailIsAvailable = (email) => {
 
 module.exports = function (app) {
 
+  app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
   app.get('/api/contacts', function (req, res) {
     res.json(multipleResponse(db));
   });
@@ -59,4 +64,5 @@ module.exports = function (app) {
       res.json({ error: 'NOT_AVAILABLE' });
     }
   });
+
 };

@@ -17,7 +17,7 @@ import {ContactHeaderComponent} from "./contacts-header.component";
   encapsulation: ViewEncapsulation.Emulated,
 })
 @RouteConfig([
-  {path: '/...', name: 'List', component: ContactsListComponent},
+  {path: '/', name: 'List', component: ContactsListComponent},
   {path: '/show/:id', name: 'Details', component: ContactDetailsComponent},
   {path: '/edit/:id', name: 'Editor', component: ContactEditorComponent}
 ])

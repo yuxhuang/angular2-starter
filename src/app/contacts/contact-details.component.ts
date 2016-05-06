@@ -72,7 +72,7 @@ export class ContactDetailsComponent implements OnActivate {
   constructor(private _contactsService: ContactsService) {}
 
   routerOnActivate(curr:RouteSegment, prev?:RouteSegment, currTree?:RouteTree, prevTree?:RouteTree):void {
-    let id = Number(curr.getParam('id'));
+    const id = Number(curr.getParam('id'));
     this._contactsService.getContact(id).subscribe(contact => this.contact = contact);
     this.baseSegments = currTree.parent(curr).urlSegments.map((x: UrlSegment) => x.segment);
     this.baseSegments.unshift('/');

@@ -35,8 +35,8 @@ export class RemoteContactsService extends ContactsService {
       .catch(this.handleError);
   }
 
-  updateContact(contact: Contact) {
-    let headers = new Headers({'Content-Type': 'application/json;charset=UTF-8'});
+  updateContact(contact: Contact): Observable<Contact> {
+    const headers = new Headers({'Content-Type': 'application/json;charset=UTF-8'});
     return this._http
       .put(this.apiRoot + `/contacts/${contact.id}`, JSON.stringify(contact), headers)
       .map(this.extractData)
@@ -47,13 +47,13 @@ export class RemoteContactsService extends ContactsService {
     if (res.status < 200 || res.status >= 300) {
       throw new Error('Bad response status: ' + res.status);
     }
-    let body = res.json();
+    const body = res.json();
     return body || { };
   }
 
   private handleError (error: any) {
     // In a real world app, we might send the error to remote logging infrastructure
-    let errMsg = error.message || 'Server error';
+    const errMsg = error.message || 'Server error';
     console.error(errMsg); // log to console instead
     return Observable.throw(errMsg);
   }

@@ -15,6 +15,11 @@ var emailIsAvailable = (email) => {
 
 module.exports = function (app) {
 
+  app.use(function(req, res, next) {
+    res.setHeader('access-control-allow-origin', '*');
+    next();
+  });
+
   app.get('/api/contacts', function (req, res) {
     res.json(multipleResponse(db));
   });

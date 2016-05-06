@@ -32,12 +32,11 @@ app.set('view engine', 'html');
 
 app.use(bodyParser.json());
 
-
 function ngApp(req, res) {
-  let baseUrl = '/';
-  let url = req.originalUrl || '/';
+  const baseUrl = '/';
+  const url = req.originalUrl || '/';
 
-  let config: ExpressEngineConfig = {
+  const config: ExpressEngineConfig = {
     directives: [ Angular2StarterAppComponent ],
     platformProviders: [
       provide(ORIGIN_URL, {useValue: 'http://localhost:3000'}),
@@ -53,10 +52,6 @@ function ngApp(req, res) {
   };
 
   res.render('index', config);
-}
-
-function indexFile(req, res) {
-  res.sendFile('/index.html', {root: __dirname});
 }
 
 // Serve static files
